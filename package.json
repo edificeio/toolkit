@@ -4,6 +4,9 @@
   "description": "Infra toolkit",
   "main": "index.js",
   "scripts": {
+    "start": "npm run clean && npm run build",
+    "clean": "rm -Rf dist",
+    "build": "tsc -p ./config/tsconfig.compile.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,5 +18,15 @@
   "bugs": {
     "url": "https://github.com/entcore/toolkit/issues"
   },
-  "homepage": "https://github.com/entcore/toolkit#readme"
+  "homepage": "https://github.com/entcore/toolkit#readme",
+  "devDependencies": {
+    "@types/core-js": "^0.9.34",
+    "axios": "^0.15.2",
+    "core-js": "^2.4.1",
+    "lodash": "^4.17.1",
+    "typescript": "^2.0.9"
+  },
+  "files": [
+    "/dist"
+  ]
 }
