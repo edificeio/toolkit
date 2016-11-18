@@ -7,30 +7,73 @@ function mapToArray(map) {
     return result;
 }
 
+export type mixCast = { type: Function, deps?: Array<any>, single? : boolean }
+export type mixCasts = { [key: string]: mixCast | Function }
+
+export interface Mixable {
+    mixin(data: any)
+}
+
 export class Mix {
-    static extend(obj, mixin) {
+    static extend(obj, mixin, casts?: mixCasts) {
         for (var property in mixin) {
-            if (typeof mixin[property] !== 'object') {
-                obj[property] = mixin[property];
+            let value = mixin[property]
+
+            if(casts && casts[property] && value) {
+
+                let castItem = casts[property]
+                let cast : mixCast
+
+                if(castItem instanceof Function){
+                    cast = {
+                        type: castItem,
+                        deps: []
+                    }
+                } else {
+                    cast = {
+                        type: castItem.type,
+                        single: castItem.single,
+                        deps: castItem.deps ? castItem.deps : []
+                    }
+                }
+
+                let doCast = (v) => {
+                    let instance = new (cast.type as any)(...cast.deps)
+                    if(instance.mixin)
+                        instance.mixin(v)
+                    else
+                        Mix.extend(instance, v)
+                    return instance
+                }
+
+                if(value instanceof Array && cast.single) {
+                    obj[property] = []
+                    value.forEach(v => {
+                        obj[property].push(doCast(v))
+                    })
+                } else {
+                    obj[property] = doCast(value)
+                }
+            }
+            else if (!value || typeof value !== 'object' || value instanceof Array) {
+                obj[property] = value;
             }
             else {
                 if (obj[property] instanceof TypedArray) {
-                    obj[property].load(mixin[property]);
+                    obj[property].load(value);
                 }
                 else {
                     if (!obj[property]) {
                         obj[property] = {};
                     }
-                    this.extend(obj[property], mixin[property]);
+                    this.extend(obj[property], value);
                 }
             }
         }
     }
 
     static castAs(className, obj, params: any = {}) {
-        var temp = {};
-        temp['constr'] = className;
-        var newObj = new temp['constr'](params);
+        var newObj = new (className as any)(params);
         this.extend(newObj, obj);
         return newObj;
     }
@@ -67,7 +110,7 @@ export class TypedArray<T> extends Array {
 
             Array.prototype.push.call(this, item);
         });
-        
+
         return this.length;
     }
 
