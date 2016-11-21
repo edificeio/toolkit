@@ -18,9 +18,29 @@ export class Selection<T extends Selectable>{
         }
     }
 
-    unSelect(filter: (T) => boolean){
+    deselect(filter: (T) => boolean){
         for(let i = 0; i < this.arr.length; i++){
             this.arr[i].selected = !filter(this.arr[i]);
+        }
+    }
+
+    deselectAll() {
+        for (let i = 0; i < this.arr.length; i++) {
+            this.arr[i].selected = false;
+        }
+    }
+
+    removeSelection() {
+        let newArr = [];
+        for (let i = 0; i < this.arr.length; i++) {
+            if (this.arr[i].selected) {
+                newArr.push(this.arr[i]);
+            }
+        }
+
+        this.arr.splice(0, this.arr.length);
+        for (let i = 0; i < newArr.length; i++) {
+            this.arr.push(newArr[i]);
         }
     }
 

@@ -4,7 +4,8 @@
         "module": "es2015",
         "moduleResolution": "node",
         "removeComments": false,
-        "noImplicitAny": false
+        "noImplicitAny": false,
+      "declaration": true
     },
     "include": [
         "src/**/*"
