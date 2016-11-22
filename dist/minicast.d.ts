@@ -1,3 +1,4 @@
+/// <reference types="core-js" />
 export declare type mixCast = {
     type: Function;
     deps?: Array<any>;

@@ -3,10 +3,12 @@
   "version": "0.0.1",
   "description": "Infra toolkit",
   "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
-    "start": "npm run clean && npm run build",
+    "start": "npm run clean && npm run build && npm run bundle",
     "clean": "rm -Rf dist",
     "build": "tsc -p ./config/tsconfig.compile.json",
+    "bundle": "rollup -c ./config/rollup.bundle.config.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -20,12 +22,16 @@
   },
   "homepage": "https://github.com/entcore/toolkit#readme",
   "devDependencies": {
+    "@types/core-js": "^0.9.34",
     "axios": "^0.15.2",
-    "core-js": "^2.4.1",
     "lodash": "^4.17.1",
+    "rollup-plugin-typescript": "^0.8.1",
+    "rollup-plugin-uglify": "^1.0.1",
     "typescript": "^2.1.1"
   },
   "files": [
-    "dist", "src", "index.d.ts"
+    "dist",
+    "index.js",
+    "index.d.ts"
   ]
 }

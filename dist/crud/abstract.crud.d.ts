@@ -1,3 +1,4 @@
+/// <reference types="core-js" />
 import { mixCasts, mixCast } from '../minicast';
 import { Http, HttpResponse } from '../http.interface';
 export interface CrudApi {
