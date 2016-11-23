@@ -21,13 +21,21 @@
     "url": "https://github.com/entcore/toolkit/issues"
   },
   "homepage": "https://github.com/entcore/toolkit#readme",
-  "devDependencies": {
+  "peerDependencies": {
     "@types/core-js": "^0.9.34",
     "axios": "^0.15.2",
     "lodash": "^4.17.1",
-    "rollup-plugin-typescript": "^0.8.1",
-    "rollup-plugin-uglify": "^1.0.1",
     "typescript": "^2.1.1"
+  },
+  "dependencies": {
+    "@types/core-js": "^0.9.34",
+    "axios": "^0.15.2",
+    "lodash": "^4.17.1",
+    "typescript": "^2.1.1"
+  },
+  "devDependencies": {
+    "rollup-plugin-typescript": "^0.8.1",
+    "rollup-plugin-uglify": "^1.0.1"
   },
   "files": [
     "dist",
