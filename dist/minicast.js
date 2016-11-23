@@ -1,3 +1,4 @@
+"use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
@@ -10,7 +11,7 @@ function mapToArray(map) {
     });
     return result;
 }
-export var Mix = (function () {
+var Mix = (function () {
     function Mix() {
     }
     Mix.extend = function (obj, mixin, casts) {
@@ -87,7 +88,8 @@ export var Mix = (function () {
     };
     return Mix;
 }());
-export var TypedArray = (function (_super) {
+exports.Mix = Mix;
+var TypedArray = (function (_super) {
     __extends(TypedArray, _super);
     function TypedArray(className, mixin) {
         if (mixin === void 0) { mixin = {}; }
@@ -127,4 +129,5 @@ export var TypedArray = (function (_super) {
     };
     return TypedArray;
 }(Array));
+exports.TypedArray = TypedArray;
 //# sourceMappingURL=minicast.js.map

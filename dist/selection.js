@@ -1,4 +1,5 @@
-export var Selection = (function () {
+"use strict";
+var Selection = (function () {
     function Selection(arr) {
         this.arr = arr;
     }
@@ -56,4 +57,5 @@ export var Selection = (function () {
     });
     return Selection;
 }());
+exports.Selection = Selection;
 //# sourceMappingURL=selection.js.map
