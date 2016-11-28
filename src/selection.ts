@@ -4,7 +4,9 @@ export interface Selectable{
 
 export class Selection<T extends Selectable>{
     private selectedElements: T[];
-    constructor(private arr: T[]){}
+    constructor(private arr: T[]) {
+        this.selectedElements = [];
+    }
 
     selectAll(){
         for(let i = 0; i < this.arr.length; i++){
