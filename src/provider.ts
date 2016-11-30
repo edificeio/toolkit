@@ -65,4 +65,8 @@ export class Provider<T> {
         await this.sync();
         this.eventer.trigger('refresh');
     }
+
+    push(data: T) {
+        this._data.push(data);
+    }
 }

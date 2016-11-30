@@ -6,8 +6,8 @@ export class Eventer{
     }
 
     trigger(eventName: string, data?: any): void{
-        if(this.events[eventName]){
-            this.events[eventName](data);
+        if (this.events[eventName]) {
+            this.events[eventName].forEach((f) => f(data));
         }
     }
 
