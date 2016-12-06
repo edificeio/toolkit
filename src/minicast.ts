@@ -70,6 +70,9 @@ export class Mix {
                 }
             }
         }
+        if(obj && obj.fromJSON){
+            obj.fromJSON(mixin);
+        }
     }
 
     static castAs(className, obj, params: any = {}) {
