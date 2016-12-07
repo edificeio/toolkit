@@ -5,7 +5,7 @@ var Eventer = (function () {
     }
     Eventer.prototype.trigger = function (eventName, data) {
         if (this.events[eventName]) {
-            this.events[eventName](data);
+            this.events[eventName].forEach(function (f) { return f(data); });
         }
     };
     Eventer.prototype.on = function (eventName, cb) {
@@ -38,4 +38,3 @@ var Eventer = (function () {
     return Eventer;
 }());
 exports.Eventer = Eventer;
-//# sourceMappingURL=eventer.js.map

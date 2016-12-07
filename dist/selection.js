@@ -2,7 +2,34 @@
 var Selection = (function () {
     function Selection(arr) {
         this.arr = arr;
+        this.selectedElements = [];
     }
+    Object.defineProperty(Selection.prototype, "all", {
+        get: function () {
+            return this.arr;
+        },
+        set: function (all) {
+            this.arr = all;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Selection.prototype.filter = function (filter) {
+        return this.arr.filter(filter);
+    };
+    Selection.prototype.push = function (item) {
+        this.arr.push(item);
+    };
+    Object.defineProperty(Selection.prototype, "length", {
+        get: function () {
+            return this.arr.length;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Selection.prototype.forEach = function (func) {
+        this.arr.forEach(func);
+    };
     Selection.prototype.selectAll = function () {
         for (var i = 0; i < this.arr.length; i++) {
             this.arr[i].selected = true;
@@ -45,6 +72,12 @@ var Selection = (function () {
                 this.selectedElements.splice(index, 1);
             }
         }
+        for (var i = 0; i < this.selectedElements.length; i++) {
+            var index = this.arr.indexOf(this.selectedElements[i]);
+            if (this.selectedElements[i].selected && index === -1) {
+                this.selectedElements.splice(index, 1);
+            }
+        }
     };
     Object.defineProperty(Selection.prototype, "selected", {
         // a specific array is maintained to avoid references breaking all the time
@@ -58,4 +91,3 @@ var Selection = (function () {
     return Selection;
 }());
 exports.Selection = Selection;
-//# sourceMappingURL=selection.js.map

@@ -23,4 +23,3 @@ var AbstractModel = (function (_super) {
     return AbstractModel;
 }(abstract_crud_1.AbstractCrud));
 exports.AbstractModel = AbstractModel;
-//# sourceMappingURL=abstract.model.js.map

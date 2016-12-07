@@ -16,4 +16,3 @@ var Collection = (function (_super) {
     return Collection;
 }(abstract_collection_1.AbstractCollection));
 exports.Collection = Collection;
-//# sourceMappingURL=collection.js.map

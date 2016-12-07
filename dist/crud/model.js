@@ -16,4 +16,3 @@ var Model = (function (_super) {
     return Model;
 }(abstract_model_1.AbstractModel));
 exports.Model = Model;
-//# sourceMappingURL=model.js.map

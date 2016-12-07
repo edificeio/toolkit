@@ -71,6 +71,9 @@ var Mix = (function () {
         for (var property in mixin) {
             _loop_1();
         }
+        if (obj && obj.fromJSON) {
+            obj.fromJSON(mixin);
+        }
     };
     Mix.castAs = function (className, obj, params) {
         if (params === void 0) { params = {}; }
@@ -130,4 +133,3 @@ var TypedArray = (function (_super) {
     return TypedArray;
 }(Array));
 exports.TypedArray = TypedArray;
-//# sourceMappingURL=minicast.js.map

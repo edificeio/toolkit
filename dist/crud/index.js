@@ -8,4 +8,3 @@ __export(require("./abstract.collection"));
 __export(require("./collection"));
 __export(require("./abstract.model"));
 __export(require("./model"));
-//# sourceMappingURL=index.js.map

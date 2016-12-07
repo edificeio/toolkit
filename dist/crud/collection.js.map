@@ -1,1 +1,0 @@
-{"version":3,"file":"collection.js","sourceRoot":"","sources":["../../src/crud/collection.ts"],"names":[],"mappings":";;;;;;AAAA,+BAAwB;AAExB,6DAA0D;AAK1D;IAAmC,8BAAqB;IAIpD,oBAAY,GAAY,EAAE,WAAgC,EAAE,aAAwB;QAApF,YACI,kBAAM,GAAG,EAAE,WAAW,EAAE,aAAa,CAAC,SACzC;QAJS,UAAI,GAAS,eAAW,CAAA;;IAIlC,CAAC;IAEL,iBAAC;AAAD,CAAC,AARD,CAAmC,wCAAkB,GAQpD;AARD,gCAQC"}

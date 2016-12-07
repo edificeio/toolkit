@@ -39,4 +39,3 @@ var AbstractCollection = (function (_super) {
     return AbstractCollection;
 }(abstract_crud_1.AbstractCrud));
 exports.AbstractCollection = AbstractCollection;
-//# sourceMappingURL=abstract.collection.js.map

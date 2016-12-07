@@ -6,4 +6,4 @@ __export(require("./minicast"));
 __export(require("./eventer"));
 __export(require("./selection"));
 __export(require("./crud"));
-//# sourceMappingURL=index.js.map
+__export(require("./provider"));

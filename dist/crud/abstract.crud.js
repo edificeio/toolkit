@@ -97,4 +97,3 @@ var AbstractCrud = (function () {
     return AbstractCrud;
 }());
 exports.AbstractCrud = AbstractCrud;
-//# sourceMappingURL=abstract.crud.js.map

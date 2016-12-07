@@ -16,4 +16,3 @@ var Crud = (function (_super) {
     return Crud;
 }(abstract_crud_1.AbstractCrud));
 exports.Crud = Crud;
-//# sourceMappingURL=crud.js.map
