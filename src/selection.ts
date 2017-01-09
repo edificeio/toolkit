@@ -83,7 +83,7 @@ export class Selection<T extends Selectable>{
 
         for (let i = 0; i < this.selectedElements.length; i++) {
             let index = this.arr.indexOf(this.selectedElements[i]);
-            if (this.selectedElements[i].selected && index === -1) {
+            if (index === -1) {
                 this.selectedElements.splice(index, 1);
             }
         }

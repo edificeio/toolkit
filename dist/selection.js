@@ -74,7 +74,7 @@ var Selection = (function () {
         }
         for (var i = 0; i < this.selectedElements.length; i++) {
             var index = this.arr.indexOf(this.selectedElements[i]);
-            if (this.selectedElements[i].selected && index === -1) {
+            if (index === -1) {
                 this.selectedElements.splice(index, 1);
             }
         }
