@@ -69,4 +69,9 @@ export class Provider<T> {
     push(data: T) {
         this._data.push(data);
     }
+
+    remove(data: T) {
+        let index = this._data.indexOf(data);
+        this._data.splice(index, 1);
+    }
 }

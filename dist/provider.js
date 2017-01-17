@@ -135,6 +135,10 @@ var Provider = (function () {
     Provider.prototype.push = function (data) {
         this._data.push(data);
     };
+    Provider.prototype.remove = function (data) {
+        var index = this._data.indexOf(data);
+        this._data.splice(index, 1);
+    };
     return Provider;
 }());
 exports.Provider = Provider;

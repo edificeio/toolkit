@@ -13,4 +13,5 @@ export declare class Provider<T> {
     private sync();
     refresh(): Promise<void>;
     push(data: T): void;
+    remove(data: T): void;
 }
