@@ -81,7 +81,7 @@ export class Mix {
         return newObj;
     }
 
-    static castArrayAs(className, arr: Array<any>, params: any[] = []) {
+    static castArrayAs(className, arr: Array<any>, params: any = {}) {
         var newArr = [];
         arr.forEach((item) => {
             newArr.push(
