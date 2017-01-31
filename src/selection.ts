@@ -59,7 +59,7 @@ export class Selection<T extends Selectable>{
     removeSelection() {
         let newArr = [];
         for (let i = 0; i < this.arr.length; i++) {
-            if (this.arr[i].selected) {
+            if (!this.arr[i].selected) {
                 newArr.push(this.arr[i]);
             }
         }
