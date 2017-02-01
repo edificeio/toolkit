@@ -13,7 +13,7 @@ export interface Mixable {
 export declare class Mix {
     static extend(obj: any, mixin: any, casts?: mixCasts): void;
     static castAs(className: any, obj: any, params?: any): any;
-    static castArrayAs(className: any, arr: Array<any>, params?: any[]): any[];
+    static castArrayAs(className: any, arr: Array<any>, params?: any): any[];
 }
 export declare class TypedArray<T> extends Array {
     className: any;

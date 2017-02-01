@@ -53,7 +53,7 @@ var Selection = (function () {
     Selection.prototype.removeSelection = function () {
         var newArr = [];
         for (var i = 0; i < this.arr.length; i++) {
-            if (this.arr[i].selected) {
+            if (!this.arr[i].selected) {
                 newArr.push(this.arr[i]);
             }
         }

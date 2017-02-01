@@ -82,7 +82,7 @@ var Mix = (function () {
         return newObj;
     };
     Mix.castArrayAs = function (className, arr, params) {
-        if (params === void 0) { params = []; }
+        if (params === void 0) { params = {}; }
         var newArr = [];
         arr.forEach(function (item) {
             newArr.push(Mix.castAs(className, item, params));
