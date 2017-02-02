@@ -7,3 +7,4 @@ __export(require("./eventer"));
 __export(require("./selection"));
 __export(require("./crud"));
 __export(require("./provider"));
+__export(require("./autosaver"));
