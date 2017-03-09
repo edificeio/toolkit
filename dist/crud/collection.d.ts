@@ -1,4 +1,3 @@
-/// <reference types="core-js" />
 import { AbstractCollection } from './abstract.collection';
 import { CrudApi } from './abstract.crud';
 import { mixCasts, mixCast } from '../minicast';

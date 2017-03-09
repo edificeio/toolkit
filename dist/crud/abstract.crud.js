@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var minicast_1 = require("../minicast");
 var AbstractCrud = (function () {
     function AbstractCrud(api, model, initialCast, childrenCasts, customMixin) {
@@ -26,8 +27,8 @@ var AbstractCrud = (function () {
     AbstractCrud.prototype.defaultMixin = function (payload) {
         var _this = this;
         if (payload instanceof Array && this.model instanceof Array) {
+            this.model = [];
             var model_1 = this.model; //fix type inference
-            model_1.length = 0;
             payload.forEach(function (item) {
                 var instance = {};
                 if (_this.initialCast) {

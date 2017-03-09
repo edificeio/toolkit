@@ -16,7 +16,7 @@ export abstract class AbstractCollection<T> extends AbstractCrud<T> implements M
             throw "[Crud][Collection] An Array payload is expected."
         }
 
-        this.data.length = 0
+        this.data = []
 
         data.forEach(item => {
             let instance = {} as T

@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var Eventer = (function () {
     function Eventer() {
         this.events = new Map();

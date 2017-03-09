@@ -1,4 +1,3 @@
-/// <reference types="core-js" />
 import { mixCasts, mixCast } from '../minicast';
 import { Http, HttpResponse } from '../http.interface';
 export interface CrudApi {
@@ -15,7 +14,7 @@ export declare abstract class AbstractCrud<T> {
     protected customMixin: (payload: any) => void;
     protected abstract http: Http;
     constructor(api: CrudApi, model: T | T[], initialCast?: mixCast | Function, childrenCasts?: mixCasts, customMixin?: (payload: any) => void);
-    private parseApi(api, parameters?);
+    protected parseApi(api: string | (() => string), parameters?: {}): string;
     private defaultMixin(payload);
     create(item?: T, opts?: {}): Promise<HttpResponse>;
     sync(opts?: {}): Promise<HttpResponse>;

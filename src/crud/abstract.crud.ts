@@ -19,7 +19,7 @@ export abstract class AbstractCrud<T> {
         protected childrenCasts?: mixCasts,
         protected customMixin?: (payload: any) => void){}
 
-    private parseApi(api: string | (() => string), parameters?: {}) {
+    protected parseApi(api: string | (() => string), parameters?: {}) {
         if(typeof api === 'function') {
             api = api()
         }
@@ -37,8 +37,8 @@ export abstract class AbstractCrud<T> {
 
     private defaultMixin(payload: any): void {
         if(payload instanceof Array && this.model instanceof Array) {
+            this.model = []
             let model = this.model //fix type inference
-            model.length = 0
             payload.forEach(item => {
                 let instance = {} as T
                 if(this.initialCast) {
