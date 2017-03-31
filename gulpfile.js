@@ -17,7 +17,12 @@ function compileTs(){
             module: "commonjs",
             moduleResolution: "node",
             sourceMap: true,
-            declaration: true
+            declaration: true,
+            mapRoot: "./",
+            typeRoots: [
+                "./node_modules/@types"
+            ],
+            types: ["core-js"]
         })
     );
 

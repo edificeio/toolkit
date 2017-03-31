@@ -17,7 +17,7 @@ var loop = function () {
         }
     });
     loopStarted = true;
-    token = setTimeout(loop, 3000);
+    token = setTimeout(loop, 500);
 };
 var Autosave = (function () {
     function Autosave() {

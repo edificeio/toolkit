@@ -4,7 +4,11 @@
         "module": "commonjs",
         "moduleResolution": "node",
         "removeComments": false,
-        "noImplicitAny": false
+        "noImplicitAny": false,
+        "mapRoot": "./",
+        "typeRoots": [
+            "./node_modules/@types"
+        ]
     },
     "include": [
         "src/**/*"
