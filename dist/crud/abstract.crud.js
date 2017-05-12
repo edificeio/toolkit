@@ -1,5 +1,4 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 var minicast_1 = require("../minicast");
 var AbstractCrud = (function () {
     function AbstractCrud(api, model, initialCast, childrenCasts, customMixin) {

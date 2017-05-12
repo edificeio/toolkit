@@ -4,7 +4,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
         function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
         function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
+        step((generator = generator.apply(thisArg, _arguments)).next());
     });
 };
 var __generator = (this && this.__generator) || function (thisArg, body) {
@@ -34,7 +34,6 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-Object.defineProperty(exports, "__esModule", { value: true });
 var eventer_1 = require("./eventer");
 var minicast_1 = require("./minicast");
 var axios_1 = require("axios");
@@ -71,13 +70,15 @@ var Provider = (function () {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        if (!(!this.isSynced && !this.syncing)) return [3 /*break*/, 2];
+                        if (!(!this.isSynced && !this.syncing))
+                            return [3 /*break*/, 2];
                         return [4 /*yield*/, this.sync()];
                     case 1:
                         _a.sent();
                         _a.label = 2;
                     case 2:
-                        if (!this.syncing) return [3 /*break*/, 4];
+                        if (!this.syncing)
+                            return [3 /*break*/, 4];
                         return [4 /*yield*/, this.syncDone()];
                     case 3:
                         _a.sent();

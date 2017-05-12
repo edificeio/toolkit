@@ -1,3 +1,4 @@
+/// <reference types="core-js" />
 import { AbstractCrud, CrudApi } from './abstract.crud';
 import { Mixable, mixCasts, mixCast } from '../minicast';
 export declare abstract class AbstractCollection<T> extends AbstractCrud<T> implements Mixable {

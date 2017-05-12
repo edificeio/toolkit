@@ -1,3 +1,4 @@
+/// <reference types="core-js" />
 import { Eventer } from './eventer';
 export declare class Provider<T> {
     path: string;

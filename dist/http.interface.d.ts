@@ -1,3 +1,4 @@
+/// <reference types="core-js" />
 export interface HttpResponse {
     data: any;
     status: number;
