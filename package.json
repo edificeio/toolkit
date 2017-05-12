@@ -1,5 +1,5 @@
 {
-  "name": "toolkit",
+  "name": "entcore-toolkit",
   "version": "0.1.0",
   "description": "Infra toolkit",
   "main": "index.js",
