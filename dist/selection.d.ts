@@ -8,6 +8,8 @@ export declare class Selection<T extends Selectable> {
     all: T[];
     filter(filter: any): T[];
     push(item: T): void;
+    addRange(arr: T[]): void;
+    readonly colLength: number;
     readonly length: number;
     forEach(func: (item) => void): void;
     selectAll(): void;

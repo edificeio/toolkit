@@ -20,9 +20,21 @@ var Selection = (function () {
     Selection.prototype.push = function (item) {
         this.arr.push(item);
     };
-    Object.defineProperty(Selection.prototype, "length", {
+    Selection.prototype.addRange = function (arr) {
+        for (var i = 0; i < arr.length; i++) {
+            this.all.push(arr[i]);
+        }
+    };
+    Object.defineProperty(Selection.prototype, "colLength", {
         get: function () {
             return this.arr.length;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(Selection.prototype, "length", {
+        get: function () {
+            return this.selected.length;
         },
         enumerable: true,
         configurable: true

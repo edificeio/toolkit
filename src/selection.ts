@@ -24,8 +24,18 @@ export class Selection<T extends Selectable>{
         this.arr.push(item);
     }
 
-    get length(): number {
+    addRange(arr: T[]){
+        for(let i = 0; i < arr.length; i++){
+            this.all.push(arr[i]);
+        }
+    }
+
+    get colLength(): number {
         return this.arr.length;
+    }
+
+    get length(): number {
+        return this.selected.length;
     }
 
     forEach(func: (item) => void){
