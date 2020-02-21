@@ -1,6 +1,5 @@
-"use strict";
-var minicast_1 = require("../minicast");
-var AbstractCrud = (function () {
+import { Mix } from '../minicast';
+export var AbstractCrud = (function () {
     function AbstractCrud(api, model, initialCast, childrenCasts, customMixin) {
         this.api = api;
         this.model = model;
@@ -38,13 +37,13 @@ var AbstractCrud = (function () {
                         instance = new ((_a = _this.initialCast.type).bind.apply(_a, [void 0].concat(_this.initialCast.deps)))();
                     }
                 }
-                minicast_1.Mix.extend(instance, item, _this.childrenCasts);
+                Mix.extend(instance, item, _this.childrenCasts);
                 model_1.push(instance);
                 var _a;
             });
         }
         else {
-            minicast_1.Mix.extend(this.model, payload, this.childrenCasts);
+            Mix.extend(this.model, payload, this.childrenCasts);
         }
     };
     AbstractCrud.prototype.create = function (item, opts) {
@@ -89,11 +88,14 @@ var AbstractCrud = (function () {
         return this.http.delete(this.parseApi(this.api.delete, item), opts)
             .then(function (response) {
             if (_this.model instanceof Array) {
-                _this.model.splice(_this.model.indexOf(item), 1);
+                var index = _this.model.indexOf(item);
+                if (index !== -1) {
+                    _this.model.splice(_this.model.indexOf(item), 1);
+                }
             }
             return response;
         });
     };
     return AbstractCrud;
 }());
-exports.AbstractCrud = AbstractCrud;
+//# sourceMappingURL=abstract.crud.js.map
