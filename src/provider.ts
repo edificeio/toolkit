@@ -72,6 +72,7 @@ export class Provider<T> {
 
     remove(data: T) {
         let index = this._data.indexOf(data);
+        if (index === -1) return;
         this._data.splice(index, 1);
     }
 }
