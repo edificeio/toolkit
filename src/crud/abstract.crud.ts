@@ -98,7 +98,10 @@ export abstract class AbstractCrud<T> {
         return this.http.delete(this.parseApi(this.api.delete, item), opts)
             .then((response: HttpResponse) => {
                 if(this.model instanceof Array){
-                    this.model.splice(this.model.indexOf(item), 1)
+                    const index = this.model.indexOf(item);
+                    if (index !== -1) {
+                        this.model.splice(this.model.indexOf(item), 1)
+                    }
                 }
                 return response
             })
