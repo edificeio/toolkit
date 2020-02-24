@@ -1,5 +1,5 @@
 node:
-  image: opendigitaleducation/node:12-alpine
+  image: opendigitaleducation/node:10
   working_dir: /home/node/app
   net: host
   volumes:
