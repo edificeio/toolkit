@@ -1,4 +1,5 @@
-import http from 'axios';
+"use strict";
+var axios_1 = require("axios");
 var autosaved = [];
 var loopStarted = false;
 var token;
@@ -9,7 +10,7 @@ var loop = function () {
                 item.fn();
             }
             else {
-                http[item.method](item.path, item.model);
+                axios_1.default[item.method](item.path, item.model);
             }
             item._backup = JSON.stringify(item.model);
         }
@@ -17,7 +18,7 @@ var loop = function () {
     loopStarted = true;
     token = setTimeout(loop, 500);
 };
-export var Autosave = (function () {
+var Autosave = (function () {
     function Autosave() {
     }
     Autosave.watch = function (path, model, method) {
@@ -59,4 +60,4 @@ export var Autosave = (function () {
     };
     return Autosave;
 }());
-//# sourceMappingURL=autosaver.js.map
+exports.Autosave = Autosave;

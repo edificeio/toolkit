@@ -1,5 +1,6 @@
-import { Mix } from '../minicast';
-export var AbstractCrud = (function () {
+"use strict";
+var minicast_1 = require("../minicast");
+var AbstractCrud = (function () {
     function AbstractCrud(api, model, initialCast, childrenCasts, customMixin) {
         this.api = api;
         this.model = model;
@@ -37,13 +38,13 @@ export var AbstractCrud = (function () {
                         instance = new ((_a = _this.initialCast.type).bind.apply(_a, [void 0].concat(_this.initialCast.deps)))();
                     }
                 }
-                Mix.extend(instance, item, _this.childrenCasts);
+                minicast_1.Mix.extend(instance, item, _this.childrenCasts);
                 model_1.push(instance);
                 var _a;
             });
         }
         else {
-            Mix.extend(this.model, payload, this.childrenCasts);
+            minicast_1.Mix.extend(this.model, payload, this.childrenCasts);
         }
     };
     AbstractCrud.prototype.create = function (item, opts) {
@@ -98,4 +99,4 @@ export var AbstractCrud = (function () {
     };
     return AbstractCrud;
 }());
-//# sourceMappingURL=abstract.crud.js.map
+exports.AbstractCrud = AbstractCrud;

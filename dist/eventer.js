@@ -1,4 +1,5 @@
-export var Eventer = (function () {
+"use strict";
+var Eventer = (function () {
     function Eventer() {
         this.events = new Map();
     }
@@ -36,4 +37,4 @@ export var Eventer = (function () {
     };
     return Eventer;
 }());
-//# sourceMappingURL=eventer.js.map
+exports.Eventer = Eventer;

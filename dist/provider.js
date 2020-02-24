@@ -1,3 +1,4 @@
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
@@ -33,9 +34,9 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
-import { Eventer } from './eventer';
-import { Mix } from './minicast';
-import http from 'axios';
+var eventer_1 = require("./eventer");
+var minicast_1 = require("./minicast");
+var axios_1 = require("axios");
 /*
  * Tool to manage a single list provider used by multiple objects (to avoid multiple call to a same path)
  * Usage :
@@ -57,12 +58,12 @@ import http from 'axios';
  * a();
  * b();
 */
-export var Provider = (function () {
+var Provider = (function () {
     function Provider(path, className) {
         this.path = path;
         this.className = className;
         this._data = [];
-        this.eventer = new Eventer();
+        this.eventer = new eventer_1.Eventer();
     }
     Provider.prototype.data = function () {
         return __awaiter(this, void 0, void 0, function () {
@@ -104,10 +105,10 @@ export var Provider = (function () {
                 switch (_a.label) {
                     case 0:
                         this.syncing = true;
-                        return [4 /*yield*/, http.get(this.path)];
+                        return [4 /*yield*/, axios_1.default.get(this.path)];
                     case 1:
                         response = _a.sent();
-                        this._data = Mix.castArrayAs(this.className, response.data);
+                        this._data = minicast_1.Mix.castArrayAs(this.className, response.data);
                         this.isSynced = true;
                         this.eventer.trigger('sync');
                         this.syncing = false;
@@ -142,4 +143,4 @@ export var Provider = (function () {
     };
     return Provider;
 }());
-//# sourceMappingURL=provider.js.map
+exports.Provider = Provider;

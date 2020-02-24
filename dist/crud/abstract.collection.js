@@ -1,11 +1,12 @@
+"use strict";
 var __extends = (this && this.__extends) || function (d, b) {
     for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-import { AbstractCrud } from './abstract.crud';
-import { Mix } from '../minicast';
-export var AbstractCollection = (function (_super) {
+var abstract_crud_1 = require("./abstract.crud");
+var minicast_1 = require("../minicast");
+var AbstractCollection = (function (_super) {
     __extends(AbstractCollection, _super);
     function AbstractCollection(api, initialCast, childrenCasts) {
         var _this = _super.call(this, api, null, initialCast, childrenCasts) || this;
@@ -30,11 +31,11 @@ export var AbstractCollection = (function (_super) {
                     instance = new ((_a = _this.initialCast.type).bind.apply(_a, [void 0].concat(_this.initialCast.deps)))();
                 }
             }
-            Mix.extend(instance, item, _this.childrenCasts);
+            minicast_1.Mix.extend(instance, item, _this.childrenCasts);
             _this.data.push(instance);
             var _a;
         });
     };
     return AbstractCollection;
-}(AbstractCrud));
-//# sourceMappingURL=abstract.collection.js.map
+}(abstract_crud_1.AbstractCrud));
+exports.AbstractCollection = AbstractCollection;

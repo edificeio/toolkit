@@ -1,14 +1,14 @@
 {
   "name": "entcore-toolkit",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "description": "Infra toolkit",
   "main": "index.js",
   "types": "index.d.ts",
   "scripts": {
     "start": "npm run clean && npm run build && npm run bundle",
     "clean": "rm -Rf dist",
-    "build": "tsc -p ./config/tsconfig.compile.json",
-    "bundle": "rollup -c ./config/rollup.bundle.config.js",
+    "build": "gulp build",
+    "bundle": "npm run build",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
