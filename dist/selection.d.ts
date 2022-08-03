@@ -5,18 +5,19 @@ export declare class Selection<T extends Selectable> {
     private arr;
     private selectedElements;
     constructor(arr: T[]);
-    all: T[];
+    get all(): T[];
+    set all(all: T[]);
     filter(filter: any): T[];
     push(item: T): void;
     addRange(arr: T[]): void;
-    readonly colLength: number;
-    readonly length: number;
-    forEach(func: (item) => void): void;
+    get colLength(): number;
+    get length(): number;
+    forEach(func: (item: any) => void): void;
     selectAll(): void;
-    select(filter: (T) => boolean): void;
-    deselect(filter: (T) => boolean): void;
+    select(filter: (T: any) => boolean): void;
+    deselect(filter: (T: any) => boolean): void;
     deselectAll(): void;
     removeSelection(): void;
     updateSelected(): void;
-    readonly selected: T[];
+    get selected(): T[];
 }

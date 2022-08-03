@@ -1,5 +1,6 @@
 "use strict";
-var Selection = (function () {
+Object.defineProperty(exports, "__esModule", { value: true });
+var Selection = /** @class */ (function () {
     function Selection(arr) {
         this.arr = arr;
         this.selectedElements = [];

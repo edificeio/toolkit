@@ -1,6 +1,14 @@
 "use strict";
+var __spreadArrays = (this && this.__spreadArrays) || function () {
+    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
+    for (var r = Array(s), k = 0, i = 0; i < il; i++)
+        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+            r[k] = a[j];
+    return r;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
 var minicast_1 = require("../minicast");
-var AbstractCrud = (function () {
+var AbstractCrud = /** @class */ (function () {
     function AbstractCrud(api, model, initialCast, childrenCasts, customMixin) {
         this.api = api;
         this.model = model;
@@ -29,18 +37,18 @@ var AbstractCrud = (function () {
             this.model = [];
             var model_1 = this.model; //fix type inference
             payload.forEach(function (item) {
+                var _a;
                 var instance = {};
                 if (_this.initialCast) {
                     if (_this.initialCast instanceof Function) {
                         instance = new _this.initialCast();
                     }
                     else {
-                        instance = new ((_a = _this.initialCast.type).bind.apply(_a, [void 0].concat(_this.initialCast.deps)))();
+                        instance = new ((_a = _this.initialCast.type).bind.apply(_a, __spreadArrays([void 0], _this.initialCast.deps)))();
                     }
                 }
                 minicast_1.Mix.extend(instance, item, _this.childrenCasts);
                 model_1.push(instance);
-                var _a;
             });
         }
         else {

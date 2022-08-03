@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var axios_1 = require("axios");
 var autosaved = [];
 var loopStarted = false;
@@ -18,7 +19,7 @@ var loop = function () {
     loopStarted = true;
     token = setTimeout(loop, 500);
 };
-var Autosave = (function () {
+var Autosave = /** @class */ (function () {
     function Autosave() {
     }
     Autosave.watch = function (path, model, method) {

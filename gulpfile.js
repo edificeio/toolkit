@@ -22,7 +22,11 @@ function compileTs(){
             typeRoots: [
                 "./node_modules/@types"
             ],
-            types: ["core-js"]
+            types: ["core-js"],
+            lib: [
+                "es2018",
+                "dom"
+            ]
         })
     );
 

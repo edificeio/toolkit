@@ -1,9 +1,25 @@
 "use strict";
-var __extends = (this && this.__extends) || function (d, b) {
-    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
-    function __() { this.constructor = d; }
-    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = function (d, b) {
+        extendStatics = Object.setPrototypeOf ||
+            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+        return extendStatics(d, b);
+    };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __spreadArrays = (this && this.__spreadArrays) || function () {
+    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
+    for (var r = Array(s), k = 0, i = 0; i < il; i++)
+        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
+            r[k] = a[j];
+    return r;
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 function mapToArray(map) {
     var result = [];
     map.forEach(function (item) {
@@ -11,7 +27,7 @@ function mapToArray(map) {
     });
     return result;
 }
-var Mix = (function () {
+var Mix = /** @class */ (function () {
     function Mix() {
     }
     Mix.extend = function (obj, mixin, casts) {
@@ -34,13 +50,13 @@ var Mix = (function () {
                     };
                 }
                 var doCast_1 = function (v) {
-                    var instance = new ((_a = cast_1.type).bind.apply(_a, [void 0].concat(cast_1.deps)))();
+                    var _a;
+                    var instance = new ((_a = cast_1.type).bind.apply(_a, __spreadArrays([void 0], cast_1.deps)))();
                     if (instance.mixin)
                         instance.mixin(v);
                     else
                         Mix.extend(instance, v);
                     return instance;
-                    var _a;
                 };
                 if (value instanceof Array && cast_1.single) {
                     obj[property] = [];
@@ -92,7 +108,7 @@ var Mix = (function () {
     return Mix;
 }());
 exports.Mix = Mix;
-var TypedArray = (function (_super) {
+var TypedArray = /** @class */ (function (_super) {
     __extends(TypedArray, _super);
     function TypedArray(className, mixin) {
         if (mixin === void 0) { mixin = {}; }
@@ -105,7 +121,7 @@ var TypedArray = (function (_super) {
         var _this = this;
         var items = [];
         for (var _i = 0; _i < arguments.length; _i++) {
-            items[_i - 0] = arguments[_i];
+            items[_i] = arguments[_i];
         }
         items.forEach(function (item) {
             if (!(item instanceof _this.className)) {

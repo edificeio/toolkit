@@ -1,4 +1,3 @@
-/// <reference types="core-js" />
 import { Eventer } from './eventer';
 export declare class Provider<T> {
     path: string;
@@ -9,8 +8,8 @@ export declare class Provider<T> {
     syncing: boolean;
     constructor(path: string, className: Function);
     data(): Promise<T[]>;
-    private syncDone();
-    private sync();
+    private syncDone;
+    private sync;
     refresh(): Promise<void>;
     push(data: T): void;
     remove(data: T): void;
