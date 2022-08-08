@@ -45,7 +45,7 @@ export class Provider<T> {
         return this._data;
     }
 
-    private async syncDone(): Promise<any> {
+    private async syncDone(): Promise<void> {
         return new Promise((resolve, reject) => {
             this.eventer.once('sync', () => resolve());
         });

@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Selection = void 0;
 var Selection = /** @class */ (function () {
     function Selection(arr) {
         this.arr = arr;
@@ -12,7 +13,7 @@ var Selection = /** @class */ (function () {
         set: function (all) {
             this.arr = all;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Selection.prototype.filter = function (filter) {
@@ -30,14 +31,14 @@ var Selection = /** @class */ (function () {
         get: function () {
             return this.arr.length;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Object.defineProperty(Selection.prototype, "length", {
         get: function () {
             return this.selected.length;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     Selection.prototype.forEach = function (func) {
@@ -98,7 +99,7 @@ var Selection = /** @class */ (function () {
             this.updateSelected();
             return this.selectedElements;
         },
-        enumerable: true,
+        enumerable: false,
         configurable: true
     });
     return Selection;

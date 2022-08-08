@@ -36,6 +36,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Provider = void 0;
 var eventer_1 = require("./eventer");
 var minicast_1 = require("./minicast");
 var axios_1 = require("axios");

@@ -1,12 +1,15 @@
 "use strict";
-var __spreadArrays = (this && this.__spreadArrays) || function () {
-    for (var s = 0, i = 0, il = arguments.length; i < il; i++) s += arguments[i].length;
-    for (var r = Array(s), k = 0, i = 0; i < il; i++)
-        for (var a = arguments[i], j = 0, jl = a.length; j < jl; j++, k++)
-            r[k] = a[j];
-    return r;
+var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.AbstractCrud = void 0;
 var minicast_1 = require("../minicast");
 var AbstractCrud = /** @class */ (function () {
     function AbstractCrud(api, model, initialCast, childrenCasts, customMixin) {
@@ -44,7 +47,7 @@ var AbstractCrud = /** @class */ (function () {
                         instance = new _this.initialCast();
                     }
                     else {
-                        instance = new ((_a = _this.initialCast.type).bind.apply(_a, __spreadArrays([void 0], _this.initialCast.deps)))();
+                        instance = new ((_a = _this.initialCast.type).bind.apply(_a, __spreadArray([void 0], _this.initialCast.deps, false)))();
                     }
                 }
                 minicast_1.Mix.extend(instance, item, _this.childrenCasts);

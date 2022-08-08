@@ -1,13 +1,8 @@
 var gulp = require('gulp');
 var ts = require('gulp-typescript');
 var clean = require('gulp-clean');
-var sourcemaps = require('gulp-sourcemaps');
 var typescript = require('typescript');
-var rollup = require('rollup-stream');
 var merge = require('merge2');
-
-console.log("Building with TS version " + typescript.version);
-console.log("TS version sould be > 2.1.1");
 
 function compileTs(){
     var tsResult = gulp.src('./src/**/*.ts')
@@ -37,13 +32,12 @@ function compileTs(){
 }
 
 gulp.task('clean', function () {
-    return gulp.src(['./dist'], { read: false })
+    return gulp.src(['./dist'], { read: false, allowEmpty: true })
        .pipe(clean());
 });
 
-gulp.task('compile', ['clean'], function(){
+gulp.task('compile', gulp.series('clean', function(){
      return compileTs();
-});
+}));
 
-gulp.task('build', ['compile'], () => {
-});
+gulp.task('build', gulp.series('compile'));

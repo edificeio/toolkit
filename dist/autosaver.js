@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.Autosave = void 0;
 var axios_1 = require("axios");
 var autosaved = [];
 var loopStarted = false;
