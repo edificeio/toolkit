@@ -9,7 +9,8 @@
     "clean": "rm -Rf dist",
     "build": "gulp build",
     "bundle": "npm run build",
-    "test": "node --test"
+    "test": "node --test && npm run test:types",
+    "test:types": "tsc --noEmit --target es2018 --module commonjs --moduleResolution node --esModuleInterop --skipLibCheck typecheck/http.types.check.ts"
   },
   "repository": {
     "type": "git",
