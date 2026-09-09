@@ -16,8 +16,8 @@ export declare abstract class AbstractCrud<T> {
     constructor(api: CrudApi, model: T | T[], initialCast?: mixCast | Function, childrenCasts?: mixCasts, customMixin?: (payload: any) => void);
     protected parseApi(api: string | (() => string), parameters?: {}): string;
     private defaultMixin;
-    create(item?: T, opts?: {}): Promise<HttpResponse>;
+    create(item?: T, opts?: {}): Promise<HttpResponse<any>>;
     sync(opts?: {}): Promise<HttpResponse>;
-    update(item?: T, opts?: {}): Promise<HttpResponse>;
-    delete(item?: T, opts?: {}): Promise<HttpResponse>;
+    update(item?: T, opts?: {}): Promise<HttpResponse<any>>;
+    delete(item?: T, opts?: {}): Promise<HttpResponse<any>>;
 }
