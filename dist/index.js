@@ -64,7 +64,8 @@ __export(index_exports, {
   Model: () => Model,
   Provider: () => Provider,
   Selection: () => Selection,
-  TypedArray: () => TypedArray
+  TypedArray: () => TypedArray,
+  http: () => http
 });
 module.exports = __toCommonJS(index_exports);
 
@@ -3637,6 +3638,28 @@ var Autosave = class {
     autosaved = [];
     clearTimeout(token);
     loopStarted = false;
+  }
+};
+
+// src/http.ts
+var http = {
+  get(url, opts) {
+    return axios_default.get(url, opts);
+  },
+  post(url, data, opts) {
+    return axios_default.post(url, data, opts);
+  },
+  postFile(url, data, opts) {
+    return axios_default.post(url, data, opts);
+  },
+  put(url, data, opts) {
+    return axios_default.put(url, data, opts);
+  },
+  putFile(url, data, opts) {
+    return axios_default.put(url, data, opts);
+  },
+  delete(url, opts) {
+    return axios_default.delete(url, opts);
   }
 };
 //# sourceMappingURL=index.js.map
