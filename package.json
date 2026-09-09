@@ -1,6 +1,6 @@
 {
   "name": "entcore-toolkit",
-  "version": "1.4.1-develop-enabling.0",
+  "version": "2.0.0-develop-enabling.0",
   "description": "Infra toolkit",
   "main": "index.js",
   "types": "index.d.ts",
