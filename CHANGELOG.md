@@ -17,10 +17,16 @@ Le format s'inspire de [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/),
 
 - Bump `axios` `^0.15.2` → `^1.20.0`. Corrige CVE-2020-28168 (SSRF via bypass du proxy sur redirection), CVE-2021-3749 (ReDoS dans `trim()`), CVE-2023-45857 (fuite du cookie XSRF-TOKEN vers un tiers), ainsi qu'un ensemble d'advisories plus récentes (SSRF via bypass `NO_PROXY`, prototype pollution en cascade, DoS par allocation de ressources, fuite du header `Proxy-Authorization` sur redirection...).
 
+### Added
+
+- Export `http` : implémente l'interface `Http` déjà définie par la lib (`get`/`post`/`postFile`/`put`/`putFile`/`delete`, toutes `Promise<HttpResponse>`), backée par axios en interne uniquement. Permet aux apps qui importent axios directement de migrer vers ce point d'entrée unique sans dépendre de la forme d'axios — un futur remplacement d'axios (par `fetch` natif par exemple) ne changera que l'implémentation interne, jamais le code des apps consommatrices.
+- Types `HttpError`, `HttpRequestConfig`, `HttpPromise`, et `HttpResponse` devenu générique (`HttpResponse<T = any>`, rétrocompatible) : équivalents indépendants d'axios aux types `AxiosError`/`AxiosRequestConfig`/`AxiosPromise`/`AxiosResponse<T>`, pour que les apps qui typaient leurs appels avec les types d'axios puissent migrer sans perdre leurs annotations de type ni recréer de dépendance à axios.
+
 ### Changed
 
-- Le pipeline de build bundle et transpile désormais axios (et le reste du graphe de modules) via [`esbuild`](https://esbuild.github.io/) (`--bundle --platform=browser --target=es2015`), au lieu de laisser axios en `require()` externe. Cible `es2015` : c'est la syntaxe la plus haute que le webpack de 2016 utilisé par les apps consommatrices (embarqué dans `webpack-stream`, indépendamment de leur propre version de webpack déclarée) sait encore parser — la syntaxe moderne d'axios (spread d'objet, méthodes `async`, générateurs async) y est réécrite via des helpers plutôt que laissée native.
+- Le pipeline de build bundle et transpile désormais axios (et le reste du graphe de modules) via [`esbuild`](https://esbuild.github.io/) (`--bundle --platform=browser --target=es2015`), au lieu de laisser axios en `require()` externe. Cible `es2015` : c'est la syntaxe la plus haute que le webpack de 2016 utilisé par les apps consommatrices (embarqué dans `webpack-stream`, indépendamment de leur propre version de webpack déclarée) sait encore parser — la syntaxe moderne d'axios (spread d'objet, méthodes `async`, générateurs async) y est réécrite via des helpers plutôt que laissée native. **IE11 n'est pas supporté** (le bundle contient de la syntaxe ES2015 native — classes, arrow functions, `let`/`const` — non redescendue) : décision produit assumée, hors périmètre.
 - `gulp-typescript`/`tsc` ne sert plus qu'à générer les déclarations de types (`.d.ts`) ; l'émission du JavaScript est entièrement déléguée à esbuild.
+- L'adaptateur `fetch` d'axios (jamais sélectionné en pratique — l'ordre de priorité par défaut `['xhr', 'http', 'fetch']` fait toujours gagner XHR dans un navigateur réel) est stubé au moment du bundling : ~26 Ko de code mort en moins, et surtout retire le seul générateur async natif du bundle, nécessaire pour rester compatible avec des pipelines Babel en aval (ex. builds Angular CLI) qui ne savent pas toujours downleveler ce cas précis.
 
 ### Removed
 
