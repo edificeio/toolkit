@@ -5,22 +5,22 @@ import { Http, HttpResponse } from './http.interface';
 // on the `Http` interface, never on axios directly. Replacing axios (with
 // `fetch` for example) will only require changing this file.
 export const http: Http = {
-    get(url: string, opts?: Object): Promise<HttpResponse> {
+    get<T = any>(url: string, opts?: Object): Promise<HttpResponse<T>> {
         return axios.get(url, opts);
     },
-    post(url: string, data: Object, opts?: Object): Promise<HttpResponse> {
+    post<T = any>(url: string, data: Object, opts?: Object): Promise<HttpResponse<T>> {
         return axios.post(url, data, opts);
     },
-    postFile(url: string, data: FormData, opts?: Object): Promise<HttpResponse> {
+    postFile<T = any>(url: string, data: FormData, opts?: Object): Promise<HttpResponse<T>> {
         return axios.post(url, data, opts);
     },
-    put(url: string, data?: Object, opts?: Object): Promise<HttpResponse> {
+    put<T = any>(url: string, data?: Object, opts?: Object): Promise<HttpResponse<T>> {
         return axios.put(url, data, opts);
     },
-    putFile(url: string, data: FormData, opts?: Object): Promise<HttpResponse> {
+    putFile<T = any>(url: string, data: FormData, opts?: Object): Promise<HttpResponse<T>> {
         return axios.put(url, data, opts);
     },
-    delete(url: string, opts?: Object): Promise<HttpResponse> {
+    delete<T = any>(url: string, opts?: Object): Promise<HttpResponse<T>> {
         return axios.delete(url, opts);
     }
 };

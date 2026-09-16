@@ -22,11 +22,15 @@ export interface HttpRequestConfig {
 
 export type HttpPromise<T = any> = Promise<HttpResponse<T>>
 
+// Generic per-call (defaulting to `any`, so every pre-existing non-generic call
+// site keeps compiling unchanged): mirrors axios's own `get<T>(url)` signature,
+// needed by entcore/admin which types its calls this way rather than casting
+// the destructured `data`.
 export interface Http {
-    get(url: string, opts?: Object) : Promise<HttpResponse>
-    post(url: string, data: Object, opts?:Object) : Promise<HttpResponse>
-    postFile(url: string, data: FormData, opts?: Object) : Promise<HttpResponse>
-    put(url: string, data?: Object, opts?: Object) : Promise<HttpResponse>
-    putFile(url: string, data: FormData, opts?: Object) : Promise<HttpResponse>
-    delete(url: string, opts?: Object) : Promise<HttpResponse>
+    get<T = any>(url: string, opts?: Object) : Promise<HttpResponse<T>>
+    post<T = any>(url: string, data: Object, opts?:Object) : Promise<HttpResponse<T>>
+    postFile<T = any>(url: string, data: FormData, opts?: Object) : Promise<HttpResponse<T>>
+    put<T = any>(url: string, data?: Object, opts?: Object) : Promise<HttpResponse<T>>
+    putFile<T = any>(url: string, data: FormData, opts?: Object) : Promise<HttpResponse<T>>
+    delete<T = any>(url: string, opts?: Object) : Promise<HttpResponse<T>>
 }
