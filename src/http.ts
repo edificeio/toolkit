@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { Http, HttpResponse } from './http.interface';
 
-// Implémentation `Http` interne à ce module : les apps consommatrices dépendent
-// de l'interface `Http`, jamais d'axios directement. Remplacer axios (par
-// `fetch` par exemple) ne demandera de changer que ce fichier.
+// `Http` implementation kept internal to this module: consuming apps depend
+// on the `Http` interface, never on axios directly. Replacing axios (with
+// `fetch` for example) will only require changing this file.
 export const http: Http = {
     get(url: string, opts?: Object): Promise<HttpResponse> {
         return axios.get(url, opts);

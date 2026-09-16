@@ -6,15 +6,15 @@ export interface HttpResponse<T = any> {
     config: {}
 }
 
-// Étend Error (pas juste une forme ad hoc) : les ~37 usages réels sur le parc
-// ne font que catcher cette erreur et lire .message et/ou .response(.data) —
-// jamais .code/.request/.config, vérifié exhaustivement.
+// Extends Error (not just an ad hoc shape): the ~37 real usages across the
+// fleet only ever catch this error and read .message and/or .response(.data) —
+// never .code/.request/.config, verified exhaustively.
 export interface HttpError<T = any> extends Error {
     response?: HttpResponse<T>
 }
 
-// Couvre les seuls champs réellement utilisés sur le parc (responseType,
-// headers) — volontairement pas une copie de la config axios complète.
+// Covers only the fields actually used across the fleet (responseType,
+// headers) — deliberately not a copy of axios's full config shape.
 export interface HttpRequestConfig {
     headers?: { [key: string]: string },
     responseType?: string
