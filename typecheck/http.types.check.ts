@@ -51,4 +51,12 @@ async function wrapperPattern(url: string, config?: HttpRequestConfig): Promise<
     return http.get(url, config);
 }
 
-export const _typeCheckOnly = { schoolYearPattern, getAll, catchPattern, catchWithResponsePattern, requestConfigPattern, wrapperPattern };
+// Real pattern (entcore/admin, admc-apps-roles.service.ts): http.get<Array<Role>>(url).then(res => res.data...)
+interface Role { id: string; actions: Array<{ name: string; displayName: string; type: string }> }
+function genericCallSitePattern(): Promise<string[][]> {
+    return http.get<Array<Role>>('/appregistry/roles/actions?structureId=0').then(res => {
+        return res.data.map(role => role.actions.map(a => a.name));
+    });
+}
+
+export const _typeCheckOnly = { schoolYearPattern, getAll, catchPattern, catchWithResponsePattern, requestConfigPattern, wrapperPattern, genericCallSitePattern };

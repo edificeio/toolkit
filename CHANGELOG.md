@@ -21,6 +21,7 @@ Le format s'inspire de [Keep a Changelog](https://keepachangelog.com/fr/1.1.0/),
 
 - Export `http` : implémente l'interface `Http` déjà définie par la lib (`get`/`post`/`postFile`/`put`/`putFile`/`delete`, toutes `Promise<HttpResponse>`), backée par axios en interne uniquement. Permet aux apps qui importent axios directement de migrer vers ce point d'entrée unique sans dépendre de la forme d'axios — un futur remplacement d'axios (par `fetch` natif par exemple) ne changera que l'implémentation interne, jamais le code des apps consommatrices.
 - Types `HttpError`, `HttpRequestConfig`, `HttpPromise`, et `HttpResponse` devenu générique (`HttpResponse<T = any>`, rétrocompatible) : équivalents indépendants d'axios aux types `AxiosError`/`AxiosRequestConfig`/`AxiosPromise`/`AxiosResponse<T>`, pour que les apps qui typaient leurs appels avec les types d'axios puissent migrer sans perdre leurs annotations de type ni recréer de dépendance à axios.
+- `Http.get`/`post`/`postFile`/`put`/`putFile`/`delete` acceptent désormais un paramètre de type générique (`get<T = any>(url): Promise<HttpResponse<T>>`, comme axios), pour les apps qui typaient leurs appels ainsi (`http.get<Foo>(url)`) plutôt que de caster la réponse déstructurée. Rétrocompatible (défaut `any`, aucun changement pour un appel existant sans paramètre de type) — découvert lors de la migration d'`entcore/admin` (US3/ENABLING-1202), purement additif côté `dist/index.js` (seuls les `.d.ts` changent, vérifié par diff).
 
 ### Changed
 
