@@ -1,4 +1,4 @@
-import http from 'axios';
+import { http } from './http';
 
 export interface AutosaveElement{
     model: any;

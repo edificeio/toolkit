@@ -5,16 +5,16 @@ Shared AngularJS infra library (`Provider`, `Autosave`, `Eventer`, `Selection`, 
 ## Structure
 
 - `src/` — TypeScript source, entry point `src/index.ts`.
-- `dist/` — generated output, not committed: a single bundled `dist/index.js` (see Build) plus one `.d.ts` per module.
+- `dist/` — generated output, not committed: one `.js` per module (compiled by `tsc`, see Build) plus `http.js` (bundled by `esbuild`, contains axios), plus one `.d.ts` per module.
 - `index.js` / `index.d.ts` — thin re-exports of `dist/index`, the actual npm package entry points (`main`/`types` in `package.json`).
 - `test/` — runtime tests (`node:test`, native runner, no framework).
 - `typecheck/` — type-only checks, compiled with `tsc --noEmit`, never executed. Keep this separate from `test/`: `node --test`'s default discovery will otherwise try to run a `.ts` file here as JS and fail.
 
 ## Build & test
 
-- `npm run build` (`gulp build`): `gulp-typescript`/`tsc` only emits `.d.ts` files; all actual JavaScript emission goes through `esbuild` (`--bundle --platform=browser --target=es2015`), which inlines and transpiles the whole module graph — including `axios` — down to a single `dist/index.js`. Target `es2015` is the ceiling: it's the highest syntax the consumer apps' 2016-era webpack can still parse. See `CHANGELOG.md` and `axios-cve-audit.md` (external doc, not in this repo) for how that target and the axios-fetch-adapter stub in `gulpfile.js` were determined empirically.
+- `npm run build` (`gulp build`): **only `http.ts` goes through `esbuild`** (`--bundle --platform=browser --target=es2015`, outputs `dist/http.js`), which inlines and transpiles axios down to the highest syntax the consumer apps' 2016-era webpack can still parse. **Everything else** (`Selection`, `Model`, `Provider`, `Mix`, `crud/*`, `Autosave`, `Eventer`) is compiled by `gulp-typescript`/`tsc` at `target: es5`, emitting real `.js` (same as before `2.0.0-dev.0`) — this matters because esbuild only emits native ES2015 `class` syntax for anything at or above that target, which a `tsc --target es5` consumer subclassing it (the whole legacy fleet) cannot construct (`TypeError: Class constructor ... cannot be invoked without 'new'`, runtime-only, invisible to build/type-check). Do not widen esbuild's `entryPoints` back to `src/index.ts` without re-reading `CHANGELOG.md`'s `2.0.0` "Fixed" entry — that regression already shipped once (`2.0.0-dev.0` through `.dev.2`) and broke 11 downstream migration PRs silently. `provider.ts`/`autosaver.ts`/`crud/collection.ts`/`crud/crud.ts`/`crud/model.ts` import `http` from `./http` (the bridge), never `axios` directly — that's required for the split to hold (otherwise their un-bundled axios import would break the same 2016-era webpack the bundling exists to satisfy). See `CHANGELOG.md` and `axios-cve-audit.md` (external doc, not in this repo) for how the `es2015` ceiling and the axios-fetch-adapter stub in `gulpfile.js` were determined empirically.
 - `npm test`: `node --test` (runtime tests against the real built `dist/index.js`, not source) `&& npm run test:types` (`tsc --noEmit` against `typecheck/`). Both must pass before publishing — there was no test suite at all before the `http` bridge work; keep building on `node:test`, don't introduce a new framework without a reason.
-- No import goes deeper than the package root (`from "entcore-toolkit"`) on any known consumer — never reintroduce per-module entry points (`dist/autosaver.js` etc.) without checking that assumption still holds.
+- No import goes deeper than the package root (`from "entcore-toolkit"`) on any known consumer — safe to keep per-module files in `dist/` (restored by the split above) as long as nothing outside this repo imports them directly; recheck that assumption before relying on it further.
 
 ## Conventions
 

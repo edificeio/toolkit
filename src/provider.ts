@@ -1,6 +1,6 @@
 ﻿import { Eventer } from './eventer';
 import { Mix } from './minicast';
-import http from 'axios';
+import { http } from './http';
 
 /*
  * Tool to manage a single list provider used by multiple objects (to avoid multiple call to a same path)
