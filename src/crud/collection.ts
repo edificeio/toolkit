@@ -1,4 +1,4 @@
-import http from 'axios'
+import { http } from '../http'
 
 import { AbstractCollection } from './abstract.collection'
 import { CrudApi } from './abstract.crud'
